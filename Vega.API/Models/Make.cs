@@ -12,11 +12,11 @@ namespace Vega.API.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        public ICollection<Model> Models { get; set; }
+        public List<Model> Models { get; set; }
 
         public Make()
         {
-            Models = new Collection<Model>();
+            Models = new List<Model>();
         }
     }
 }

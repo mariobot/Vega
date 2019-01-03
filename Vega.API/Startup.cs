@@ -30,6 +30,8 @@ namespace Vega.API
         {
             services.AddAutoMapper();
 
+            services.AddCors();
+
             services.AddDbContext<VegaDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -52,6 +54,8 @@ namespace Vega.API
             {
                 app.UseHsts();
             }
+
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
             app.UseMvc();

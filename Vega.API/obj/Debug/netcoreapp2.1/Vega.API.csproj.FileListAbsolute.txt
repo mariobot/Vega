@@ -1,0 +1,14 @@
+C:\Users\mabotero\source\repos\Vega\Vega.API\bin\Debug\netcoreapp2.1\Vega.API.deps.json
+C:\Users\mabotero\source\repos\Vega\Vega.API\bin\Debug\netcoreapp2.1\Vega.API.runtimeconfig.json
+C:\Users\mabotero\source\repos\Vega\Vega.API\bin\Debug\netcoreapp2.1\Vega.API.runtimeconfig.dev.json
+C:\Users\mabotero\source\repos\Vega\Vega.API\bin\Debug\netcoreapp2.1\Vega.API.dll
+C:\Users\mabotero\source\repos\Vega\Vega.API\bin\Debug\netcoreapp2.1\Vega.API.pdb
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.csprojAssemblyReference.cache
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.csproj.CoreCompileInputs.cache
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.RazorAssemblyInfo.cache
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.RazorAssemblyInfo.cs
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.AssemblyInfoInputs.cache
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.AssemblyInfo.cs
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.RazorTargetAssemblyInfo.cache
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.dll
+C:\Users\mabotero\source\repos\Vega\Vega.API\obj\Debug\netcoreapp2.1\Vega.API.pdb

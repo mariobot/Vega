@@ -35,6 +35,9 @@ namespace Vega.API
             services.AddDbContext<VegaDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddMvc().AddJsonOptions(

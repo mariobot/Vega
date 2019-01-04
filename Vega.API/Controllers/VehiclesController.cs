@@ -13,51 +13,57 @@ namespace Vega.API.Controllers
     [Route("/api/vehicles")]
     public class VehiclesController : Controller
     {
-        private readonly IMapper _mapper;
-        private readonly VegaDbContext _context;
+        private readonly IMapper _mapper;        
+        private readonly IVehicleRepository _repo;
+        private readonly IUnitOfWork _uow;
 
-        public VehiclesController(IMapper mapper, VegaDbContext context)
+        public VehiclesController(IMapper mapper,
+            IVehicleRepository repo,
+            IUnitOfWork uow)
         {
-            _context = context;
+            _uow = uow;
+            _repo = repo;
             _mapper = mapper;
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateVehicle([FromBody] VehicleResource vehicleResource)
+        public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var vehicle = _mapper.Map<VehicleResource, Vehicle>(vehicleResource);
+            var vehicle = _mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource);
             vehicle.LastUpdate = DateTime.Now;
 
-            _context.Vehicles.Add(vehicle);
-            await _context.SaveChangesAsync();
+            _repo.Add(vehicle);
+            await _uow.CompleteAsync();
 
-            var result = _mapper.Map<Vehicle,VehicleResource>(vehicle);
+            vehicle = await _repo.GetVehicle(vehicle.Id);
+
+            var result = _mapper.Map<Vehicle, SaveVehicleResource>(vehicle);
 
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVehicle(int id, [FromBody] VehicleResource vehicleResource)
+        public async Task<IActionResult> UpdateVehicle(int id, [FromBody] SaveVehicleResource vehicleResource)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);                
+                return BadRequest(ModelState);
 
-            var vehicle = await _context.Vehicles.Include(f => f.Features).SingleOrDefaultAsync(x => x.Id == id);
+            var vehicle = await _repo.GetVehicle(id);
 
-            if(vehicle == null)
+            if (vehicle == null)
                 return NotFound();
-            
-            _mapper.Map<VehicleResource,Vehicle>(vehicleResource,vehicle);
+
+            _mapper.Map<SaveVehicleResource, Vehicle>(vehicleResource, vehicle);
 
             vehicle.LastUpdate = DateTime.Now;
-            
-            await _context.SaveChangesAsync();
 
-            var result = _mapper.Map<Vehicle,VehicleResource>(vehicle);
+            await _uow.CompleteAsync();
+
+            var result = _mapper.Map<Vehicle, VehicleResource>(vehicle);
 
             return Ok(result);
         }
@@ -65,28 +71,28 @@ namespace Vega.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
+            var vehicle = await _repo.GetVehicle(id);
 
-            if(vehicle == null)
+            if (vehicle == null)
                 return NotFound();
 
-            _context.Remove(vehicle);
-            await _context.SaveChangesAsync();
+            _repo.Remove(vehicle);
+            await _uow.CompleteAsync();
 
             return Ok(id);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVehicle(int id)
-        {            
-            var vehicle = await _context.Vehicles.Include(f => f.Features).SingleOrDefaultAsync(x => x.Id == id);
+        {
+            var vehicle = await _repo.GetVehicle(id, false);
 
-            if(vehicle == null)
+            if (vehicle == null)
                 return NotFound();
-            
-            var vehicleResource = _mapper.Map<Vehicle,VehicleResource>(vehicle);
 
-            return Ok(vehicleResource); 
+            var vehicleResource = _mapper.Map<Vehicle, VehicleResource>(vehicle);
+
+            return Ok(vehicleResource);
         }
     }
 }

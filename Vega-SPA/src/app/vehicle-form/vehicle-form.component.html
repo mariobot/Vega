@@ -17,7 +17,7 @@
     </h2>
     <div *ngFor="let f of features" class="checkbox">
       <label for="feature{{f.id}}">
-        <input type="checkbox" id="feature{{ f.id }}">
+        <input type="checkbox" id="feature{{ f.id }}"> {{ f.name }}
       </label>
     </div>
 </form>

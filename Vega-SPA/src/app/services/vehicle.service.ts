@@ -8,12 +8,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class MakeService {
+export class VehicleService {
 
 constructor(private http: HttpClient ) { }
 
 getMakes() {
   return this.http.get('https://localhost:5001/api/Makes');
+}
+
+getFeatures() {
+  return this.http.get('https://localhost:5001/api/features');
 }
 
 }

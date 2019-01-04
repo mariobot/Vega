@@ -1,10 +1,9 @@
-import { FeatureService } from './services/feature.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { VehicleFormComponent } from './vehicle-form/vehicle-form.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MakeService } from './services/Make.service';
+import { VehicleService } from './services/vehicle.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -20,8 +19,7 @@ import { FormsModule } from '@angular/forms';
       HttpClientModule
    ],
    providers: [
-      MakeService,
-      FeatureService
+      VehicleService,
    ],
    bootstrap: [
       AppComponent

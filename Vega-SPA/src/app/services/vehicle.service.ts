@@ -20,4 +20,8 @@ getFeatures() {
   return this.http.get('https://localhost:5001/api/features');
 }
 
+create(vehicle) {
+  return this.http.post('https://localhost:5001/api/vehicles', vehicle);
+}
+
 }

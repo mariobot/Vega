@@ -24,4 +24,8 @@ create(vehicle) {
   return this.http.post('https://localhost:5001/api/vehicles', vehicle);
 }
 
+getVehicles () {
+  return this.http.get('https://localhost:5001/api/vehicles');
+}
+
 }

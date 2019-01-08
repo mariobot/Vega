@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Vega.API.Core;
@@ -27,6 +28,13 @@ namespace Vega.API.Persistence
                .SingleOrDefaultAsync(x => x.Id == id);
             
             return vehicle;
+        }
+
+        public async Task<List<Vehicle>> GetVehicles(){
+
+            var vehicles = await _context.Vehicles.ToListAsync();
+
+            return vehicles;
         }
 
         public void Add(Vehicle _vehicle)

@@ -6,20 +6,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { VehicleService } from './services/vehicle.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
    declarations: [
       AppComponent,
-      VehicleFormComponent
+      VehicleFormComponent,
+      VehicleListComponent
    ],
    imports: [
       FormsModule,
       BrowserModule,
       AppRoutingModule,
-      HttpClientModule
+      HttpClientModule,
+      NgbModule
    ],
    providers: [
-      VehicleService,
+      VehicleService
    ],
    bootstrap: [
       AppComponent

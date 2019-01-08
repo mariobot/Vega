@@ -94,5 +94,13 @@ namespace Vega.API.Controllers
 
             return Ok(vehicleResource);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetVehicles()
+        {
+            var vehicles = await _repo.GetVehicles();
+
+            return Ok(vehicles);
+        }
     }
 }
